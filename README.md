@@ -16,6 +16,13 @@
     - Music :musical_note:: load, play, rewind, pause, stop, fadeout.
 
 
+## 04.04.2021 :snake:
+- primertest:pray::
+    - Events.
+        - Keyboard
+        - Mouse
+        - Collision
+        - Masks
 
 
 

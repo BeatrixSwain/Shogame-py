@@ -50,7 +50,8 @@ rect.center = (width//2, height//2) #Se setean las coordenadas según su centro.
 #cargarla
 beatrix = pygame.image.load('images/doll.png') # -> retornará una superficie 
 # New width and height will be (50, 30).
-beatrix_small = pygame.transform.scale(beatrix, (200, 200)) #Setear el tamaño, porque la imagen era muy grande :D
+# beatrix_small = pygame.transform.scale(beatrix, (200, 200)) #Setear el tamaño, porque la imagen era muy grande :D
+beatrix_small = pygame.transform.scale(beatrix, (50, 50)) #Setear el tamaño, porque la imagen era muy grande :D
 rectbeat = beatrix_small.get_rect() #Todas las surfaces tienen un rect, lo obtenemos.
 rectbeat.center = (width//2, height//2) #Se centra
 #Obtener fuente
@@ -79,7 +80,32 @@ while True:
         if event.type == pygame.QUIT: #Cuando se hace click en el botón cerrar
             pygame.quit()
             sys.exit()
-    
+        
+        # if event.type == pygame.KEYDOWN:#Press
+        #     print("Press"+str(event))
+        #     if event.key == pygame.K_a or event.key == pygame.K_LEFT:
+        #         print("LEFT")
+        #     if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+        #         print("RIGHT")
+        #     if event.key == pygame.K_w or event.key == pygame.K_UP:
+        #         print("UP")
+        #     if event.key == pygame.K_s or event.key == pygame.K_DOWN:
+        #         print("DOWN")
+        if event.type == pygame.KEYUP: #Liberada
+            print("No press")
+            # pass
+
+    pressed = pygame.key.get_pressed()#RETORNA KEY PRESSED.and
+    if pressed[pygame.K_a] or pressed[pygame.K_LEFT]:
+        print("LEFT")
+    if pressed[pygame.K_d] or pressed[pygame.K_RIGHT]:
+        print("RIGHT")
+    if pressed[pygame.K_w] or pressed[pygame.K_UP]:
+        print("UP")
+    if pressed[pygame.K_s] or pressed[pygame.K_DOWN]:
+        print("DOWN")
+
+
     surface.fill(my_color)#pintar la pantalla de ese color
     #Mostrar cubitos
     # pygame.draw.rect(surface, white, ojito_izq)#Sobre qué superficie se pintará, de qué color el rectángulo, el rectangulo

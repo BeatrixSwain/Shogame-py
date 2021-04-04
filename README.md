@@ -16,7 +16,7 @@
     - Music :musical_note:: load, play, rewind, pause, stop, fadeout.
 
 
-## 04.04.2021 :snake:
+## 03.04.2021 :snake:
 - primertest:pray::
     - Events.
         - Keyboard
@@ -24,10 +24,23 @@
         - Collision
         - Masks
 
-
-
+## 04.04.2021
+- shogamepy:
+    - Elements:
+        - Player
+        - Walls
+        - platform
+    - Walls:
+        - Move
+    - Player:
+        - Jump
+        - Stay in screen
+        - Game over if collide or not (LOSE_IF_HORIZONTAL_COL)
+    
 
 
 -------
 
 <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+
+<a href="http://www.freepik.com">Background Designed by upklyak / Freepik</a>

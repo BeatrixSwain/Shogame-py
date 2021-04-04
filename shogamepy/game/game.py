@@ -18,6 +18,8 @@ class Game:
         self.move = MOVE_SPEED
         self.playing = True
         self.stop_horizontal = LOSE_IF_HORIZONTAL_COL
+        self.clock = pygame.time.Clock()
+        self.wall_stopped = False
 
     def start(self):
         self.new()
@@ -53,7 +55,7 @@ class Game:
 
     def run(self):
         while(self.running):
-            pygame.time.delay(self.calm_down)
+            self.clock.tick(CALM_DOWN)
             self.events()
             self.draw()
             self.update()
@@ -76,16 +78,24 @@ class Game:
             pygame.display.flip()#ACTUALIZA LA PANTALLA, SE HARÁ SOBRE TODA LA SUPERFICIE.
             wall = self.player.collide_with(self.walls)
             if wall:
-                self.stop()
+                if self.player.collide_bottom(wall):
+                    if self.wall_stopped:
+                        self.reestartmove()
+                    self.player.skid(wall)  
+                else:
+                    self.stop()                  
             else:
                 if not self.stop_horizontal:
                     self.reestartmove()
             self.sprites.update()
             self.player.validate_platform(self.platform)
+            self.updateElements(self.walls)
+            self.generateWalls()
            
 
     
     def stop(self):
+        print("Me pararon")
         if self.stop_horizontal:
             self.player.stop()
             self.stopelements(self.walls)
@@ -95,6 +105,7 @@ class Game:
 
 
     def stopelements(self, elements):
+        self.wall_stopped = True
         for element in elements:
             element.stop()
 
@@ -103,5 +114,11 @@ class Game:
         self.returnMoveWalls(self.walls)
     
     def returnMoveWalls(self, elements):
+        self.wall_stopped = False
         for element in elements:
             element.restart()
+
+    def updateElements(self, elements):
+        for element in elements:
+            if not element.rect.right >0: #No visible
+                element.kill()#Pium pium

@@ -24,17 +24,17 @@ class Player(pygame.sprite.Sprite):
     def update_pos(self):
         if self.vel_y < 0: #Salto
             self.vel_y += PLAYER_GRAV #Papel de la gravedad
-            if(self.pos_y + self.vel_y+PLAYER_GRAV<HEIGHT_PLAYER):#Evitar que se vaya de pantalla.
+            if((self.pos_y + self.vel_y + 0.5* PLAYER_GRAV)<HEIGHT_PLAYER):#Evitar que se vaya de pantalla.
                 self.pos_y = HEIGHT_PLAYER
                 self.vel_y = 0
             else:
-                self.pos_y += self.vel_y + PLAYER_GRAV    
+                self.pos_y += self.vel_y + 0.5* PLAYER_GRAV    
         elif self.pos_y >= self.floor: #Ha llegado al suelo
             self.vel_y = 0
             self.can_jump = True            
         else:
             self.vel_y += PLAYER_GRAV #Papel de la gravedad
-            self.pos_y += self.vel_y + PLAYER_GRAV    
+            self.pos_y += self.vel_y + 0.5*  PLAYER_GRAV    
     
     def update(self):
         if self.playing:
@@ -60,4 +60,14 @@ class Player(pygame.sprite.Sprite):
             return obj[0] #Retornamos el primero con el que ha chocado
         
     def stop(self):
-        self.playing = False
+        # self.playing = False
+        pass
+
+    def collide_bottom(self, wall):
+        return self.rect.colliderect(wall.rect_top)
+
+    def skid(self, wall):
+        # print("Esquiando")
+        self.pos_y = wall.rect.top
+        self.vel_y = 0
+        self.can_jump = True

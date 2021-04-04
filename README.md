@@ -37,6 +37,7 @@
         - Stay in screen
         - Game over if collide or not (LOSE_IF_HORIZONTAL_COL)
     
+    
 
 
 -------

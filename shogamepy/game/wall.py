@@ -12,9 +12,11 @@ class Wall(pygame.sprite.Sprite):
         self.rect.bottom = bottom
         self.start = left
         self.vel_x = WALL_SPEED
+        self.rect_top = pygame.Rect(self.rect.x, self.rect.y, self.rect.width, 1)
 
     def update(self):
         self.rect.left -=  self.vel_x 
+        self.rect_top.x = self.rect.x
         # if self.rect.left<0: #Para que se reinicie
         #     self.rect.left = self.start
 

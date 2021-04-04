@@ -1,14 +1,24 @@
+import os
 import pygame
 from .config import *
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, left, bottom, floor):
+    def __init__(self, left, bottom, floor, dir_image):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((WIDTH_PLAYER,HEIGHT_PLAYER))
-        self.image.fill(ORANGE)
-    
+        # self.image = pygame.Surface((WIDTH_PLAYER,HEIGHT_PLAYER))
+        # self.image.fill(ORANGE)
+        
+        self.images = (
+             pygame.image.load(os.path.join(dir_image, 'doll.png')),
+             pygame.image.load(os.path.join(dir_image, 'crow.png'))
+        )    
+        self.image = self.images[0]
+        self.image = pygame.transform.scale(self.image, (50, 50))
         self.rect = self.image.get_rect()
+        #MASK
+        self.mask = pygame.mask.from_surface(self.image)
+
         # self.rect.x = 100
         # self.rect.y = 100
         self.rect.left = left
@@ -20,7 +30,7 @@ class Player(pygame.sprite.Sprite):
         # self.can_jump = False
         self.can_jump = True
         self.playing = True
-    
+
     def update_pos(self):
         if self.vel_y < 0: #Salto
             self.vel_y += PLAYER_GRAV #Papel de la gravedad
@@ -34,7 +44,9 @@ class Player(pygame.sprite.Sprite):
             self.can_jump = True            
         else:
             self.vel_y += PLAYER_GRAV #Papel de la gravedad
-            self.pos_y += self.vel_y + 0.5*  PLAYER_GRAV    
+            self.pos_y += self.vel_y + 0.5*  PLAYER_GRAV  
+            self.image = self.images[0]
+            self.image = pygame.transform.scale(self.image, (50, 50))  
     
     def update(self):
         if self.playing:
@@ -46,11 +58,15 @@ class Player(pygame.sprite.Sprite):
         if res:
             self.vel_y=0
             self.pos_y = platform.rect.top
+            self.image = self.images[0]
+            self.image = pygame.transform.scale(self.image, (50, 50))
             
         
     def jump(self):
         if self.can_jump:
             self.vel_y =  JUMP
+            self.image = self.images[1]
+            self.image = pygame.transform.scale(self.image, (50, 50))
             # self.can_jump = False
 
     def collide_with(self, sprites):
@@ -71,3 +87,5 @@ class Player(pygame.sprite.Sprite):
         self.pos_y = wall.rect.top
         self.vel_y = 0
         self.can_jump = True
+        self.image = self.images[0]
+        self.image = pygame.transform.scale(self.image, (50, 50))

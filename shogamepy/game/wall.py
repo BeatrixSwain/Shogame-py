@@ -1,17 +1,21 @@
+import os
 import pygame
 from .config import *
 
 class Wall(pygame.sprite.Sprite):
 
-    def __init__(self, width, height, color, left, bottom):
+    def __init__(self, width, height, color, left, bottom, dir_image):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface((width, height))
         self.image.fill(color)
+        #MASK
+        self.mask = pygame.mask.from_surface(self.image)
+
         self.rect = self.image.get_rect()
         self.rect.left = left
         self.rect.bottom = bottom
         self.start = left
-        self.vel_x = WALL_SPEED
+        self.vel_x = ELEMENTS_SPEED
         self.rect_top = pygame.Rect(self.rect.x, self.rect.y, self.rect.width, 1)
 
     def update(self):
@@ -24,4 +28,4 @@ class Wall(pygame.sprite.Sprite):
         self.vel_x  = 0
 
     def restart(self):
-        self.vel_x  = WALL_SPEED
+        self.vel_x  = ELEMENTS_SPEED

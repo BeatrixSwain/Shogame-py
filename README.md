@@ -1,4 +1,13 @@
 # Shogame-py 
+## Screenshots 04.04.2021 :camera:
+
+### 
+![alt text](https://i.gyazo.com/9a3606e5d4f8f4a1fd78b3f6eabd6dc0.png)
+### 
+![caption](https://i.gyazo.com/55d22db9bba2bfabf720212f26df0ce6.gif)
+### 
+![alt text](https://i.gyazo.com/63c3d9ef7aced985511cae65b3e2c6e4.png)
+
 ## 03.04.2021 :snake:
 ### Required: pip3 install pygame
 
@@ -24,7 +33,7 @@
         - Collision
         - Masks
 
-## 04.04.2021
+## 04.04.2021 :snake:
 - shogamepy:
     - Elements:
         - Player
@@ -36,7 +45,24 @@
         - Jump
         - Stay in screen
         - Game over if collide or not (LOSE_IF_HORIZONTAL_COL)
-    
+    - Drops
+        - Collide, sound and delete
+    - Images
+    - Sounds.
+    - Score
+    - Result
+    - Levels
+    - Difficulty
+    - Restart
+    - Menu
+    - Animation
+
+- Next:
+    - Control with awsd (left, up, down, right)
+    - "Enemies"
+    - Image for walls
+    - Create the menu.
+
     
 
 
